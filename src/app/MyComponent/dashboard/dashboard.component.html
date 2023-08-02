@@ -1,0 +1,121 @@
+<div>
+  <nav class="navbar navbar-expand-lg bg-dark">
+    <div class="container-fluid">
+      <a class="navbar-brand text-white" href="#">ToDo App</a>
+    </div>
+  </nav>
+
+  <div class="cotainer-fluid">
+    <div class="container">
+      <div class="row">
+        <div class="col"></div>
+        <div class="col-md-6 bg-white">
+          <div class="input-group mb-3 mt-5">
+            <input
+              type="text"
+              class="form-control bg-light"
+              placeholder="Add Your Todo..."
+              name="task"
+              [(ngModel)]="addTaskValue"
+              aria-label="Recipient's username"
+              aria-describedby="button-addon2"
+            />
+            <button
+              class="btn btn-outline-success mx-2"
+              type="button"
+              (click)="addTask()"
+            >
+              + Add ToDo
+            </button>
+          </div>
+          <h4 class="txt-secondary mt-4">Tasks :</h4>
+          <div style="overflow-y: auto; height: 450px">
+            <div class="m-3" *ngFor="let task of taskArr">
+              <div class="p-2 shadow border">
+                <div class="input-group">
+                  <div type="text" class="form-control me-2 border-0">
+                    {{ task.task_name }}
+                  </div>
+                  <button
+                    type="button"
+                    class="btn btn-outline-primary me-2 rounded"
+                    data-bs-toggle="modal"
+                    data-bs-target="#staticBackdrop"
+                    (click) = "call(task)"
+                  >
+                    Edit
+                  </button>
+                  <button
+                    class="btn btn-outline-danger rounded"
+                    type="button"
+                    (click)="deleteTask(task)"
+                  >
+                    Delete
+                  </button>
+                </div>
+
+                <!-- Modal -->
+                <div
+                  class="modal fade"
+                  id="staticBackdrop"
+                  data-bs-backdrop="static"
+                  data-bs-keyboard="false"
+                  tabindex="-1"
+                  aria-labelledby="staticBackdropLabel"
+                  aria-hidden="true"
+                >
+                  <div class="modal-dialog">
+                    <div class="modal-content">
+                      <div class="modal-header">
+                        <h1 class="modal-title fs-5" id="staticBackdropLabel">
+                          Edit Todo
+                        </h1>
+                        <button
+                          type="button"
+                          class="btn-close"
+                          data-bs-dismiss="modal"
+                          aria-label="Close"
+                        ></button>
+                      </div>
+                      <div class="modal-body">
+                        <div class="input-group">
+                          <input
+                            type="text"
+                            class="form-control "
+                            placeholder="Add Your Todo..."
+                            name="task"
+                            [(ngModel)]="editTaskValue"
+                            aria-label="Recipient's username"
+                            aria-describedby="button-addon2"
+                          />
+                          <button
+                            class="btn btn-outline-secondary rounded mx-2"
+                            type="button"
+                            data-bs-dismiss="modal"
+                            (click)="editTask()"
+                          >
+                            Update
+                          </button>
+                        </div>
+                      </div>
+                      <div class="modal-footer">
+                        <button
+                          type="button"
+                          class="btn btn-danger"
+                          data-bs-dismiss="modal"
+                        >
+                          Close
+                        </button>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col"></div>
+      </div>
+    </div>
+  </div>
+</div>
